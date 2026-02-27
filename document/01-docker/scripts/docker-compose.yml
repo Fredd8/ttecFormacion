@@ -1,0 +1,43 @@
+version: '3.9'  # Versión del esquema de Docker Compose
+
+services:       # Define los contenedores (servicios) que se van a crear
+
+  app:          # Nombre del servicio (contenedor de la aplicación)
+    build: .    # Construye la imagen usando el Dockerfile del directorio actual
+
+    ports:
+      - "3000:3000"  # PUERTO_LOCAL:PUERTO_CONTENEDOR
+                     # Permite acceder a la app desde http://localhost:3000
+
+    depends_on:
+      - mongo        # Indica que este servicio depende de 'mongo'
+                     # Solo asegura que el contenedor de mongo se inicie antes
+
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/miapp
+        # Variable de entorno dentro del contenedor
+        # "mongo" es el nombre del servicio (Docker crea una red interna)
+        # 27017 es el puerto interno de MongoDB
+        # miapp es el nombre de la base de datos
+
+    volumes:
+      - .:/app
+        # Sincroniza el directorio actual (.) con /app dentro del contenedor
+        # Útil para desarrollo (cambios en código se reflejan sin reconstruir)
+
+  mongo:              # Servicio de base de datos
+    image: mongo:6    # Usa la imagen oficial de MongoDB versión 6
+
+    ports:
+      - "27017:27017" # Expone MongoDB al host (opcional en desarrollo)
+                      # Permite conectarte desde tu máquina con un cliente externo
+
+    volumes:
+      - mongo-data:/data/db
+        # Guarda los datos en un volumen persistente
+        # Evita perder la base de datos si el contenedor se elimina
+
+volumes:
+  mongo-data:
+    # Define un volumen nombrado administrado por Docker
+    # Se crea automáticamente la primera vez que se usa

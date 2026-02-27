@@ -1,0 +1,68 @@
+Esta es la URL
+ 
+https://hygia-des.tragsatec.es/Home/MunicipiosByProvinciaId?id=13
+ 
+Como recuerdo de lo que hemos visto:
+ 
+$.ajax({
+          type: "GET",
+          url: urlGetProvinciasByComunidad,
+          data: { "comunidad": comunidadSelectedId },
+          success: function (provincias) {
+
+          },
+          failure: function (response) {
+                          console.log(response);
+          }
+});
+ 
+ 
+UPS
+ 
+Parece que success y failure están obsoletos en jQuery 3.0
+Era lo que había visto Alejando del done.
+ 
+Deprecation Notice: The jqXHR.success(), jqXHR.error(), and jqXHR.complete() callbacks are removed as of jQuery 3.0. You can use jqXHR.done(), jqXHR.fail(), and jqXHR.always() instead.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19	// Assign handlers immediately after making the request,
+// and remember the jqXHR object for this request
+var jqxhr = $.ajax( "example.php" )
+  .done(function() {
+    alert( "success" );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "complete" );
+  });
+// Perform other work here ...
+// Set another completion function for the request above
+jqxhr.always(function() {
+  alert( "second complete" );
+});
+ 
+ 
+ 
+Así que, aprovechad y hacedlo según el nuevo esquema:
+ 
+Más info:
+https://api.jquery.com/jquery.ajax/
+ 
