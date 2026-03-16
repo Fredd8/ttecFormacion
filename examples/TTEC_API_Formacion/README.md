@@ -1,4 +1,4 @@
-## 🚀 Dockerized DotNet API with SQL Server
+# 🚀 Dockerized DotNet API with SQL Server
 
 A simple .NET Web API connected to a SQL Server instance using Entity Framework Core, all running inside Docker containers.
 
