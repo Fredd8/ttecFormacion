@@ -139,3 +139,57 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .DS_Store
+
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Node / Flutter
+# =========================
+node_modules/
+dist/
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# =========================
+# .NET
+# =========================
+*/bin/
+*/obj/
+
+# =========================
+# Docker
+# =========================
+*.tar
+
+# =========================
+# Kubernetes
+# =========================
+*.kubeconfig
+
+# =========================
+# Environment
+# =========================
+.env
+.env.*
